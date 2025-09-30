@@ -1,0 +1,10 @@
+#!/bin/bash
+
+gpu=80 # A5000:86, A100:80, H100:90
+
+cmake -B build . \
+	-DBLA_VENDOR=Intel10_64_dyn \
+	-DFAISS_ENABLE_GPU=ON \
+	-DFAISS_ENABLE_PYTHON=OFF \
+	-DCMAKE_CUDA_ARCHITECTURES="$gpu" \
+	-DCMAKE_CXX_COMPILER=g++-10
