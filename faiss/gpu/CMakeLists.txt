@@ -11,12 +11,12 @@ set(FAISS_GPU_SRC
   GpuDistance.cu
   GpuIcmEncoder.cu
   GpuIndex.cu
-  GpuIndexBinaryFlat.cu
+  #GpuIndexBinaryFlat.cu
   GpuIndexFlat.cu
   GpuIndexIVF.cu
   GpuIndexIVFFlat.cu
-  GpuIndexIVFPQ.cu
-  GpuIndexIVFScalarQuantizer.cu
+  #GpuIndexIVFPQ.cu
+  #GpuIndexIVFScalarQuantizer.cu
   GpuResources.cpp
   StandardGpuResources.cpp
   impl/BinaryDistance.cu
@@ -29,14 +29,14 @@ set(FAISS_GPU_SRC
   impl/IVFFlat.cu
   impl/IVFFlatScan.cu
   impl/IVFInterleaved.cu
-  impl/IVFPQ.cu
+  #impl/IVFPQ.cu
   impl/IVFUtils.cu
   impl/IVFUtilsSelect1.cu
   impl/IVFUtilsSelect2.cu
   impl/InterleavedCodes.cpp
   impl/L2Norm.cu
   impl/L2Select.cu
-  impl/PQScanMultiPassPrecomputed.cu
+  #impl/PQScanMultiPassPrecomputed.cu
   impl/RemapIndices.cpp
   impl/VectorResidual.cu
   impl/scan/IVFInterleaved1.cu
@@ -85,12 +85,12 @@ set(FAISS_GPU_HEADERS
   GpuIcmEncoder.h
   GpuFaissAssert.h
   GpuIndex.h
-  GpuIndexBinaryFlat.h
+  #GpuIndexBinaryFlat.h
   GpuIndexFlat.h
   GpuIndexIVF.h
   GpuIndexIVFFlat.h
-  GpuIndexIVFPQ.h
-  GpuIndexIVFScalarQuantizer.h
+  #GpuIndexIVFPQ.h
+  #GpuIndexIVFScalarQuantizer.h
   GpuIndicesOptions.h
   GpuResources.h
   StandardGpuResources.h
@@ -107,17 +107,17 @@ set(FAISS_GPU_HEADERS
   impl/IVFFlat.cuh
   impl/IVFFlatScan.cuh
   impl/IVFInterleaved.cuh
-  impl/IVFPQ.cuh
+  #impl/IVFPQ.cuh
   impl/IVFUtils.cuh
   impl/InterleavedCodes.h
   impl/L2Norm.cuh
   impl/L2Select.cuh
-  impl/PQCodeDistances-inl.cuh
-  impl/PQCodeDistances.cuh
-  impl/PQCodeLoad.cuh
-  impl/PQScanMultiPassNoPrecomputed-inl.cuh
-  impl/PQScanMultiPassNoPrecomputed.cuh
-  impl/PQScanMultiPassPrecomputed.cuh
+  #impl/PQCodeDistances-inl.cuh
+  #impl/PQCodeDistances.cuh
+  #impl/PQCodeLoad.cuh
+  #impl/PQScanMultiPassNoPrecomputed-inl.cuh
+  #impl/PQScanMultiPassNoPrecomputed.cuh
+  #impl/PQScanMultiPassPrecomputed.cuh
   impl/RemapIndices.h
   impl/VectorResidual.cuh
   impl/scan/IVFInterleavedImpl.cuh

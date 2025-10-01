@@ -18,6 +18,8 @@
 
 #include <algorithm>
 
+#include <cuda_bf16.h>
+
 namespace faiss {
 namespace gpu {
 
@@ -447,6 +449,17 @@ __global__ void ivfInterleavedAppend(
     }
 }
 
+__global__ void floatToBf16Kernel(
+        Tensor<float, 2, true> floatVecs,
+        Tensor<__nv_bfloat16, 2, true> bf16Vecs) {
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
+    int j = blockIdx.y * blockDim.y + threadIdx.y;
+
+    if (i < floatVecs.getSize(0) && j < floatVecs.getSize(1)) {
+        bf16Vecs[i][j] = __float2bfloat16(floatVecs[i][j]);
+    }
+}
+
 void runIVFFlatInterleavedAppend(
         Tensor<int, 1, true>& listIds,
         Tensor<int, 1, true>& listOffset,
@@ -475,109 +488,23 @@ void runIVFFlatInterleavedAppend(
                         listData.data().get());     \
     } while (0)
 
-    if (!scalarQ) {
-        // No encoding is needed, we just append directly
-        RUN_APPEND(float, 32, vecs);
-        return;
-    }
+    //RUN_APPEND(float, 32, vecs);
 
-    // only implemented at the moment
-    FAISS_ASSERT(scalarQ->bits == 16 || scalarQ->bits <= 8);
+	DeviceTensor<__nv_bfloat16, 2, true> bf16Vecs(
+            res,
+            makeTempAlloc(AllocType::Other, stream),
+            {vecs.getSize(0), vecs.getSize(1)});
 
-    if (scalarQ->bits == 16) {
-        FAISS_ASSERT(scalarQ->qtype == ScalarQuantizer::QuantizerType::QT_fp16);
+    // 2. float에서 bfloat16으로 변환하는 커널을 실행합니다.
+    dim3 threads(16, 16);
+    dim3 blocks(
+            utils::divUp(vecs.getSize(0), threads.x),
+            utils::divUp(vecs.getSize(1), threads.y));
+    floatToBf16Kernel<<<blocks, threads, 0, stream>>>(vecs, bf16Vecs);
+    CUDA_TEST_ERROR();
 
-        using CodecT = Codec<ScalarQuantizer::QuantizerType::QT_fp16, 1>;
-        CodecT codec(scalarQ->qtype);
-
-        DeviceTensor<half, 2, true> encodedVecs(
-                res,
-                makeTempAlloc(AllocType::Other, stream),
-                {vecs.getSize(0), vecs.getSize(1)});
-
-        runSQEncode(vecs, encodedVecs, codec, stream);
-        RUN_APPEND(CodecT::EncodeT, CodecT::kEncodeBits, encodedVecs);
-
-    } else if (scalarQ->bits <= 8) {
-        DeviceTensor<uint8_t, 2, true> encodedVecs(
-                res,
-                makeTempAlloc(AllocType::Other, stream),
-                {vecs.getSize(0), vecs.getSize(1)});
-
-        switch (scalarQ->qtype) {
-            case ScalarQuantizer::QuantizerType::QT_8bit: {
-                using CodecT =
-                        Codec<ScalarQuantizer::QuantizerType::QT_8bit, 1>;
-                CodecT codec(
-                        scalarQ->code_size,
-                        scalarQ->gpuTrained.data(),
-                        scalarQ->gpuTrained.data() + dim);
-
-                runSQEncode(vecs, encodedVecs, codec, stream);
-                RUN_APPEND(CodecT::EncodeT, CodecT::kEncodeBits, encodedVecs);
-            } break;
-            case ScalarQuantizer::QuantizerType::QT_8bit_uniform: {
-                using CodecT =
-                        Codec<ScalarQuantizer::QuantizerType::QT_8bit_uniform,
-                              1>;
-                CodecT codec(
-                        scalarQ->code_size,
-                        scalarQ->trained[0],
-                        scalarQ->trained[1]);
-
-                runSQEncode(vecs, encodedVecs, codec, stream);
-                RUN_APPEND(CodecT::EncodeT, CodecT::kEncodeBits, encodedVecs);
-            } break;
-            case ScalarQuantizer::QuantizerType::QT_8bit_direct: {
-                using CodecT =
-                        Codec<ScalarQuantizer::QuantizerType::QT_8bit_direct,
-                              1>;
-                CodecT codec(scalarQ->code_size);
-
-                runSQEncode(vecs, encodedVecs, codec, stream);
-                RUN_APPEND(CodecT::EncodeT, CodecT::kEncodeBits, encodedVecs);
-            } break;
-            case ScalarQuantizer::QuantizerType::QT_6bit: {
-                using CodecT =
-                        Codec<ScalarQuantizer::QuantizerType::QT_6bit, 1>;
-                CodecT codec(
-                        scalarQ->code_size,
-                        scalarQ->gpuTrained.data(),
-                        scalarQ->gpuTrained.data() + dim);
-
-                runSQEncode(vecs, encodedVecs, codec, stream);
-                RUN_APPEND(CodecT::EncodeT, CodecT::kEncodeBits, encodedVecs);
-            } break;
-            case ScalarQuantizer::QuantizerType::QT_4bit: {
-                using CodecT =
-                        Codec<ScalarQuantizer::QuantizerType::QT_4bit, 1>;
-                CodecT codec(
-                        scalarQ->code_size,
-                        scalarQ->gpuTrained.data(),
-                        scalarQ->gpuTrained.data() + dim);
-
-                runSQEncode(vecs, encodedVecs, codec, stream);
-                RUN_APPEND(CodecT::EncodeT, CodecT::kEncodeBits, encodedVecs);
-            } break;
-            case ScalarQuantizer::QuantizerType::QT_4bit_uniform: {
-                using CodecT =
-                        Codec<ScalarQuantizer::QuantizerType::QT_4bit_uniform,
-                              1>;
-                CodecT codec(
-                        scalarQ->code_size,
-                        scalarQ->trained[0],
-                        scalarQ->trained[1]);
-
-                runSQEncode(vecs, encodedVecs, codec, stream);
-                RUN_APPEND(CodecT::EncodeT, CodecT::kEncodeBits, encodedVecs);
-            } break;
-            default:
-                // unimplemented, should be handled at a higher level
-                FAISS_ASSERT(false);
-        }
-    }
-
-#undef RUN_APPEND
+	// 3. 변환된 bfloat16 벡터를 리스트에 추가합니다.
+    RUN_APPEND(__nv_bfloat16, 16, bf16Vecs);
     CUDA_TEST_ERROR();
 }
 

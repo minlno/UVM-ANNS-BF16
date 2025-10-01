@@ -13,6 +13,7 @@
 #include <faiss/gpu/utils/HostTensor.cuh>
 #include <faiss/gpu/utils/PtxUtils.cuh>
 #include <faiss/gpu/utils/WarpShuffles.cuh>
+#include <cuda_bf16.h>
 
 namespace faiss {
 namespace gpu {
@@ -123,6 +124,75 @@ struct CodecFloat {
 
     inline __device__ float decodeNew(int dim, EncodeT v) const {
         return v;
+    }
+
+    int bytesPerVec;
+};
+
+/////
+//
+// 16 bit bfloat16 encodings
+//
+/////
+struct CodecBf16 {
+    /// How many dimensions per iteration we are handling for encoding or
+    /// decoding
+    static constexpr int kDimPerIter = 1;
+
+    CodecBf16(int vecBytes) : bytesPerVec(vecBytes) {}
+
+    size_t getSmemSize(int /*dim*/) {
+        return 0;
+    }
+    inline __device__ void initKernel(float* /*smem*/, int /*dim*/) {}
+
+    inline __device__ void decode(void* data, int vec, int d, float* out)
+            const {
+        __nv_bfloat16* p =
+                (__nv_bfloat16*)&((uint8_t*)data)[vec * bytesPerVec];
+        out[0] = __bfloat162float(p[d]);
+    }
+
+    inline __device__ float decodePartial(
+            void* data,
+            int vec,
+            int d,
+            int subD) const {
+        // doesn't need implementing (kDimPerIter == 1)
+        return 0.0f;
+    }
+
+    inline __device__ void encode(
+            void* data,
+            int vec,
+            int d,
+            float v[kDimPerIter]) const {
+        __nv_bfloat16* p =
+                (__nv_bfloat16*)&((uint8_t*)data)[vec * bytesPerVec];
+        p[d] = __float2bfloat16(v[0]);
+    }
+
+    inline __device__ void encodePartial(
+            void* data,
+            int vec,
+            int d,
+            int remaining,
+            float v[kDimPerIter]) const {
+        // doesn't need implementing (kDimPerIter == 1)
+    }
+
+    //
+    // new implementation (for interleaved layout)
+    //
+    using EncodeT = __nv_bfloat16;
+    static constexpr int kEncodeBits = 16;
+
+    inline __device__ EncodeT encodeNew(int /*dim*/, float v) const {
+        return __float2bfloat16(v);
+    }
+
+    inline __device__ float decodeNew(int /*dim*/, EncodeT v) const {
+        return __bfloat162float(v);
     }
 
     int bytesPerVec;
