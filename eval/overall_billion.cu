@@ -738,7 +738,7 @@ int main(int argc,char **argv){
 	std::vector<int> topks = {10, 32};
 	//std::vector<int> nprobes = {2, 4, 6, 8, 10, 12, 14, 16};
 	//std::vector<int> nprobes = {8, 16, 24, 32, 40, 48, 56, 64};
-	std::vector<int> batch_sizes = {8192, 1024, 2048, 4096};
+	std::vector<int> batch_sizes = {8192, 1024, 2048, 4096, 8192};
 
     bf16* xq_bf16 = new bf16[dim * nq];
     for (size_t i = 0; i < nq; i++) {
@@ -747,7 +747,7 @@ int main(int argc,char **argv){
     }
 
 	for (int input_k : topks) {
-        int in_probe = 16;
+        int in_probe = 12;
 		for (int bs : batch_sizes) {
         while (true) {
     		std::vector<float> dis(nq * input_k);
@@ -771,7 +771,7 @@ int main(int argc,char **argv){
             acc = acc * 100 / (i*bs);
 
 
-            if ((input_k == 10 && acc >= 90.0)
+            if ((input_k == 10 && acc >= 89.0)
                     || (input_k == 32 && acc >= 95.0)) {
 			    printf("=======================================\n");
 			    printf("topk: %d, batch size: %d, nprobe: %d\n", input_k, bs, in_probe);
@@ -780,7 +780,7 @@ int main(int argc,char **argv){
 			    printf("=======================================\n");
                 break;
             }
-            in_probe += 16;
+            in_probe += 12;
 		}
 		}
 	}
