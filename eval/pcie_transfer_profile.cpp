@@ -36,6 +36,7 @@
 #include <faiss/gpu/StandardGpuResources.h>
 #include <faiss/index_io.h>
 #include <cuda_bf16.h>
+#include <nvtx3/nvToolsExt.h>
 
 using bf16 = __nv_bfloat16;
 double elapsed() {
@@ -482,8 +483,8 @@ float* fbin_read(const char* fname, size_t* d_out, size_t* n_out) {
     }
 
     int d, n;
-    fread(&d, sizeof(int), 1, f);
     fread(&n, sizeof(int), 1, f);
+    fread(&d, sizeof(int), 1, f);
     fclose(f);
 
     printf("fbin_read: d = %d, n = %d\n", d, n);
@@ -566,6 +567,13 @@ int main(int argc,char **argv){
     }
     std::string p1 = argv[1];
 
+	#pragma omp parallel
+    {
+        // 병렬 영역에서 실제 스레드 수 출력(한 번만)
+        #pragma omp single
+        std::cout << "[parallel] num_threads = " << omp_get_num_threads() << "\n";
+    }
+
 	int num_cores = std::thread::hardware_concurrency();
 	printf("num cores: %d\n", num_cores);
 
@@ -574,46 +582,64 @@ int main(int argc,char **argv){
     std::string db, train_db, query, gtI;
     int dim;
 	if (p1 == "sift"){
+        /*
         db = "/fast-lab-share/mhkim/anns-dataset/sift1b/bigann_base.bvecs";
         train_db = "/fast-lab-share/mhkim/anns-dataset/sift1b/bigann_learn.bvecs";
         query = "/fast-lab-share/mhkim/anns-dataset/sift1b/bigann_query.bvecs";
         gtI = "/fast-lab-share/mhkim/anns-dataset/sift1b/gnd/idx_1000M.ivecs";
+        */
+        db = "/storage/anns-dataset/sift1b/bigann_base.bvecs";
+        train_db = "/storage/anns-dataset/sift1b/bigann_learn.bvecs";
+        query = "/storage/anns-dataset/sift1b/bigann_query.bvecs";
+        gtI = "/storage/anns-dataset/sift1b/gnd/idx_1000M.ivecs";
         dim = 128;
         //ncentroids = 256;
         ncentroids = 32768;
     }
     else if (p1 == "sift10"){
-        db = "/hdd/anns-dataset/sift1b/bigann_base.bvecs";
-        train_db = "/hdd/anns-dataset/sift1b/bigann_base.bvecs";
-        query = "/hdd/anns-dataset/sift1b/bigann_query.bvecs";
-        gtI = "/hdd/anns-dataset/sift1b/gnd/idx_10M.ivecs";
+        db = "/storage/anns-dataset/sift1b/bigann_base.bvecs";
+        train_db = "/storage/anns-dataset/sift1b/bigann_base.bvecs";
+        query = "/storage/anns-dataset/sift1b/bigann_query.bvecs";
+        gtI = "/storage/anns-dataset/sift1b/gnd/idx_10M.ivecs";
         dim = 128;
         //ncentroids = 256;
         ncentroids = 32768;
     }
     else if (p1 == "sift100"){
-        db = "/hdd/anns-dataset/sift1b/bigann_base.bvecs";
-        train_db = "/hdd/anns-dataset/sift1b/bigann_learn.bvecs";
-        query = "/hdd/anns-dataset/sift1b/bigann_query.bvecs";
-        gtI = "/hdd/anns-dataset/sift1b/gnd/idx_100M.ivecs";
+        db = "/storage/anns-dataset/sift1b/bigann_base.bvecs";
+        train_db = "/storage/anns-dataset/sift1b/bigann_learn.bvecs";
+        query = "/storage/anns-dataset/sift1b/bigann_query.bvecs";
+        gtI = "/storage/anns-dataset/sift1b/gnd/idx_100M.ivecs";
         dim = 128;
         //ncentroids = 256;
         ncentroids = 32768;
     }
     else if (p1 == "deep"){
+        /*
         db = "/fast-lab-share/mhkim/anns-dataset/deep1b/base.1B.fbin";
         train_db = "/fast-lab-share/mhkim/anns-dataset/deep1b/learn.350M.fbin";
         query = "/fast-lab-share/mhkim/anns-dataset/deep1b/query.public.10K.fbin";
         gtI = "/fast-lab-share/mhkim/anns-dataset/deep1b/groundtruth.public.10K.ibin";
+        */
+        db = "/storage/anns-dataset/deep1b/base.1B.fbin";
+        train_db = "/storage/anns-dataset/deep1b/learn.350M.fbin";
+        query = "/storage/anns-dataset/deep1b/query.public.10K.fbin";
+        gtI = "/storage/anns-dataset/deep1b/groundtruth.public.10K.ibin";
         dim = 96;
 		//ncentroids = 384;
         ncentroids = 32768;
     }
     else if (p1 == "text"){
+        /*
         db = "/fast-lab-share/mhkim/anns-dataset/text1b/base.1B.fbin";
         train_db = "/fast-lab-share/mhkim/anns-dataset/text1b/query.learn.50M.fbin";
         query = "/fast-lab-share/mhkim/anns-dataset/text1b/query.public.100K.fbin";
         gtI = "/fast-lab-share/mhkim/anns-dataset/text1b/groundtruth.public.100K.ibin";
+        */
+        db = "/storage/anns-dataset/text1b/base.1B.fbin";
+        train_db = "/storage/anns-dataset/text1b/query.learn.50M.fbin";
+        query = "/storage/anns-dataset/text1b/query.public.100K.fbin";
+        gtI = "/storage/anns-dataset/text1b/groundtruth.public.100K.ibin";
         dim = 200;
         //ncentroids = 192;
         ncentroids = 32768;
@@ -625,7 +651,7 @@ int main(int argc,char **argv){
 
     auto t0 = elapsed();
 
-    omp_set_num_threads(64);
+    omp_set_num_threads(num_cores);
 
     int dev_no = 0;
     faiss::gpu::StandardGpuResources resources;
@@ -747,14 +773,30 @@ int main(int argc,char **argv){
     }
 
 	for (int input_k : topks) {
-        int in_probe = 12;
+        int in_probe;
+        if (p1 == "text"){
+            if (input_k == 10)
+                in_probe = 64;
+            else
+                in_probe = 128;
+        } else {
+            if (input_k == 10)
+                in_probe = 32;
+            else
+                in_probe = 48;
+        }
+
+
 		for (int bs : batch_sizes) {
-        while (true) {
     		std::vector<float> dis(nq * input_k);
     		std::vector<faiss::Index::idx_t> idx(nq * input_k);
     		index->nprobe = in_probe;
     		double tt0, tt1, total = 0.;
 
+            char nvtx_label[128];
+            snprintf(nvtx_label, sizeof(nvtx_label), "search_tk%d_bs%d", input_k, bs);
+            printf("%s start...\n", nvtx_label);
+            nvtxRangePushA(nvtx_label);
     		int i;
     		for (i = 0; i < nq / bs; i++){
         		tt0 = elapsed();
@@ -763,6 +805,9 @@ int main(int argc,char **argv){
         		tt1 = elapsed();
             	total += (tt1 - tt0) * 1000;
     		}
+            nvtxRangePop();
+            cudaDeviceSynchronize();
+            printf("%s complete...\n", nvtx_label);
 
     		double acc = 0.;
     		for (int j = 0; j < i * bs; j++){
@@ -771,17 +816,11 @@ int main(int argc,char **argv){
             acc = acc * 100 / (i*bs);
 
 
-            if ((input_k == 10 && acc >= 89.0)
-                    || (input_k == 32 && acc >= 95.0)) {
-			    printf("=======================================\n");
+                printf("=======================================\n");
 			    printf("topk: %d, batch size: %d, nprobe: %d\n", input_k, bs, in_probe);
     		    printf("QPS: %.3f\n", nq / (total / 1000));
     		    printf("Ave accuracy : %.1f%% \n", acc);
 			    printf("=======================================\n");
-                break;
-            }
-            in_probe += 12;
-		}
 		}
 	}
 

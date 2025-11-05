@@ -7,4 +7,6 @@ cmake -B build . \
 	-DFAISS_ENABLE_GPU=ON \
 	-DFAISS_ENABLE_PYTHON=OFF \
 	-DCMAKE_CUDA_ARCHITECTURES="$gpu" \
+	-DCMAKE_CUDA_FLAGS="-I/usr/local/cuda-12.9/include" \
+	-DCMAKE_CXX_FLAGS="-I/usr/local/cuda-12.9/include" \
 	-DCMAKE_CXX_COMPILER=g++-10
