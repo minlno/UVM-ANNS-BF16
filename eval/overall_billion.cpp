@@ -759,11 +759,11 @@ int main(int argc,char **argv){
         delete[] gt_int;
     }
 
-	nq = 8192;
 	std::vector<int> topks = {10, 32};
 	//std::vector<int> nprobes = {2, 4, 6, 8, 10, 12, 14, 16};
 	//std::vector<int> nprobes = {8, 16, 24, 32, 40, 48, 56, 64};
-	std::vector<int> batch_sizes = {8192, 1024, 2048, 4096, 8192};
+	//std::vector<int> batch_sizes = {8192, 1024, 2048, 4096, 8192};
+	std::vector<int> batch_sizes = {8,8};
 
     bf16* xq_bf16 = new bf16[dim * nq];
     for (size_t i = 0; i < nq; i++) {
@@ -785,6 +785,10 @@ int main(int argc,char **argv){
                 in_probe = 48;
         }
 		for (int bs : batch_sizes) {
+            if (bs >= 1024)
+                nq = 8192;
+            else
+                nq = 64;
     		std::vector<float> dis(nq * input_k);
     		std::vector<faiss::Index::idx_t> idx(nq * input_k);
     		index->nprobe = in_probe;

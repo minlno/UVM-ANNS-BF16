@@ -1,0 +1,347 @@
+2 arguments
+[parallel] num_threads = 72
+num cores: 72
+[0.736 s] Loading train set
+fbin_read: d = 200, n = 50000000
+[36.082 s] Training on 50000000 vectors
+[141.870 s] Loading database
+d : 200, n: 1000000000
+Read 10/100 slice done... , Thread 1 : 14.660 s
+Read 0/100 done
+Read 40/100 slice done... , Thread 4 : 14.730 s
+Read 1/100 done
+Read 20/100 slice done... , Thread 2 : 14.765 s
+Read 2/100 done
+Read 0/100 slice done... , Thread 0 : 14.805 s
+Read 3/100 done
+Read 50/100 slice done... , Thread 5 : 14.901 s
+Read 4/100 done
+Read 30/100 slice done... , Thread 3 : 15.023 s
+Read 5/100 done
+Read 11/100 slice done... , Thread 1 : 16.382 s
+Read 6/100 done
+Read 41/100 slice done... , Thread 4 : 16.399 s
+Read 7/100 done
+Read 21/100 slice done... , Thread 2 : 16.438 s
+Read 8/100 done
+Read 1/100 slice done... , Thread 0 : 16.430 s
+Read 9/100 done
+Read 51/100 slice done... , Thread 5 : 16.640 s
+Read 10/100 done
+Read 31/100 slice done... , Thread 3 : 16.776 s
+Read 11/100 done
+Read 12/100 slice done... , Thread 1 : 16.385 s
+Read 12/100 done
+Read 42/100 slice done... , Thread 4 : 16.467 s
+Read 13/100 done
+Read 22/100 slice done... , Thread 2 : 16.417 s
+Read 14/100 done
+Read 2/100 slice done... , Thread 0 : 16.406 s
+Read 15/100 done
+Read 52/100 slice done... , Thread 5 : 16.684 s
+Read 16/100 done
+Read 32/100 slice done... , Thread 3 : 16.803 s
+Read 17/100 done
+Read 13/100 slice done... , Thread 1 : 16.298 s
+Read 18/100 done
+Read 43/100 slice done... , Thread 4 : 16.556 s
+Read 19/100 done
+Read 3/100 slice done... , Thread 0 : 16.552 s
+Read 20/100 done
+Read 23/100 slice done... , Thread 2 : 16.580 s
+Read 21/100 done
+Read 53/100 slice done... , Thread 5 : 16.824 s
+Read 22/100 done
+Read 33/100 slice done... , Thread 3 : 16.959 s
+Read 23/100 done
+Read 14/100 slice done... , Thread 1 : 16.128 s
+Read 24/100 done
+Read 44/100 slice done... , Thread 4 : 16.740 s
+Read 25/100 done
+Read 24/100 slice done... , Thread 2 : 16.742 s
+Read 26/100 done
+Read 4/100 slice done... , Thread 0 : 16.764 s
+Read 27/100 done
+Read 54/100 slice done... , Thread 5 : 16.973 s
+Read 28/100 done
+Read 34/100 slice done... , Thread 3 : 17.089 s
+Read 29/100 done
+Read 80/100 slice done... , Thread 8 : 85.833 s
+Read 30/100 done
+Read 90/100 slice done... , Thread 9 : 85.857 s
+Read 31/100 done
+Read 70/100 slice done... , Thread 7 : 85.869 s
+Read 32/100 done
+Read 60/100 slice done... , Thread 6 : 85.926 s
+Read 33/100 done
+Read 15/100 slice done... , Thread 1 : 16.138 s
+Read 34/100 done
+Read 45/100 slice done... , Thread 4 : 16.817 s
+Read 35/100 done
+Read 25/100 slice done... , Thread 2 : 16.801 s
+Read 36/100 done
+Read 5/100 slice done... , Thread 0 : 16.842 s
+Read 37/100 done
+Read 55/100 slice done... , Thread 5 : 17.061 s
+Read 38/100 done
+Read 35/100 slice done... , Thread 3 : 17.158 s
+Read 39/100 done
+Read 16/100 slice done... , Thread 1 : 16.203 s
+Read 40/100 done
+Read 46/100 slice done... , Thread 4 : 16.853 s
+Read 41/100 done
+Read 26/100 slice done... , Thread 2 : 16.872 s
+Read 42/100 done
+Read 6/100 slice done... , Thread 0 : 16.874 s
+Read 43/100 done
+Read 56/100 slice done... , Thread 5 : 17.085 s
+Read 44/100 done
+Read 36/100 slice done... , Thread 3 : 17.206 s
+Read 45/100 done
+Read 17/100 slice done... , Thread 1 : 15.875 s
+Read 46/100 done
+Read 47/100 slice done... , Thread 4 : 16.339 s
+Read 47/100 done
+Read 27/100 slice done... , Thread 2 : 16.302 s
+Read 48/100 done
+Read 7/100 slice done... , Thread 0 : 16.336 s
+Read 49/100 done
+Read 37/100 slice done... , Thread 3 : 16.529 s
+Read 50/100 done
+Read 18/100 slice done... , Thread 1 : 15.203 s
+Read 51/100 done
+Read 48/100 slice done... , Thread 4 : 15.953 s
+Read 52/100 done
+Read 28/100 slice done... , Thread 2 : 15.946 s
+Read 53/100 done
+Read 8/100 slice done... , Thread 0 : 15.944 s
+Read 54/100 done
+Read 38/100 slice done... , Thread 3 : 16.314 s
+Read 55/100 done
+Read 19/100 slice done... , Thread 1 : 15.139 s
+Read 56/100 done
+Read 29/100 slice done... , Thread 2 : 15.661 s
+Read 57/100 done
+Read 49/100 slice done... , Thread 4 : 15.692 s
+Read 58/100 done
+Read 9/100 slice done... , Thread 0 : 15.649 s
+Read 59/100 done
+Read 39/100 slice done... , Thread 3 : 15.059 s
+Read 60/100 done
+Read 91/100 slice done... , Thread 9 : 94.371 s
+Read 61/100 done
+Read 81/100 slice done... , Thread 8 : 94.517 s
+Read 62/100 done
+Read 61/100 slice done... , Thread 6 : 94.607 s
+Read 63/100 done
+Read 71/100 slice done... , Thread 7 : 94.785 s
+Read 64/100 done
+Read 57/100 slice done... , Thread 5 : 70.362 s
+Read 65/100 done
+Read 58/100 slice done... , Thread 5 : 54.071 s
+Read 66/100 done
+Read 82/100 slice done... , Thread 8 : 99.017 s
+Read 67/100 done
+Read 92/100 slice done... , Thread 9 : 99.175 s
+Read 68/100 done
+Read 62/100 slice done... , Thread 6 : 99.149 s
+Read 69/100 done
+Read 72/100 slice done... , Thread 7 : 99.236 s
+Read 70/100 done
+Read 59/100 slice done... , Thread 5 : 65.105 s
+Read 71/100 done
+Read 93/100 slice done... , Thread 9 : 87.887 s
+Read 72/100 done
+Read 83/100 slice done... , Thread 8 : 88.387 s
+Read 73/100 done
+Read 63/100 slice done... , Thread 6 : 88.225 s
+Read 74/100 done
+Read 73/100 slice done... , Thread 7 : 88.422 s
+Read 75/100 done
+Read 94/100 slice done... , Thread 9 : 83.970 s
+Read 76/100 done
+Read 84/100 slice done... , Thread 8 : 83.961 s
+Read 77/100 done
+Read 64/100 slice done... , Thread 6 : 84.127 s
+Read 78/100 done
+Read 74/100 slice done... , Thread 7 : 84.097 s
+Read 79/100 done
+Read 95/100 slice done... , Thread 9 : 84.205 s
+Read 80/100 done
+Read 85/100 slice done... , Thread 8 : 83.751 s
+Read 81/100 done
+Read 65/100 slice done... , Thread 6 : 84.253 s
+Read 82/100 done
+Read 75/100 slice done... , Thread 7 : 84.203 s
+Read 83/100 done
+Read 86/100 slice done... , Thread 8 : 84.511 s
+Read 84/100 done
+Read 96/100 slice done... , Thread 9 : 84.718 s
+Read 85/100 done
+Read 66/100 slice done... , Thread 6 : 84.476 s
+Read 86/100 done
+Read 76/100 slice done... , Thread 7 : 84.442 s
+Read 87/100 done
+Read 87/100 slice done... , Thread 8 : 84.251 s
+Read 88/100 done
+Read 97/100 slice done... , Thread 9 : 84.353 s
+Read 89/100 done
+Read 67/100 slice done... , Thread 6 : 84.691 s
+Read 90/100 done
+Read 77/100 slice done... , Thread 7 : 84.500 s
+Read 91/100 done
+Read 88/100 slice done... , Thread 8 : 84.551 s
+Read 92/100 done
+Read 98/100 slice done... , Thread 9 : 84.335 s
+Read 93/100 done
+Read 68/100 slice done... , Thread 6 : 84.226 s
+Read 94/100 done
+Read 78/100 slice done... , Thread 7 : 84.138 s
+Read 95/100 done
+Read 99/100 slice done... , Thread 9 : 83.901 s
+Read 96/100 done
+Read 89/100 slice done... , Thread 8 : 84.109 s
+Read 97/100 done
+Read 79/100 slice done... , Thread 7 : 83.661 s
+Read 98/100 done
+Read 69/100 slice done... , Thread 6 : 83.686 s
+Read 99/100 done
+[1015.245 s] Indexing database, size 1000000000*200
+Index 0/100 done : 28.719 s
+Index 1/100 done : 19.760 s
+Index 2/100 done : 19.338 s
+Index 3/100 done : 18.885 s
+Index 4/100 done : 18.838 s
+Index 5/100 done : 18.748 s
+Index 6/100 done : 18.650 s
+Index 7/100 done : 18.646 s
+Index 8/100 done : 18.608 s
+Index 9/100 done : 18.698 s
+Index 10/100 done : 25.148 s
+Index 11/100 done : 25.333 s
+Index 12/100 done : 25.267 s
+Index 13/100 done : 25.125 s
+Index 14/100 done : 25.247 s
+Index 15/100 done : 25.298 s
+Index 16/100 done : 27.863 s
+Index 17/100 done : 28.678 s
+Index 18/100 done : 28.629 s
+Index 19/100 done : 22.230 s
+Index 20/100 done : 24.377 s
+Index 21/100 done : 24.016 s
+Index 22/100 done : 24.272 s
+Index 23/100 done : 26.235 s
+Index 24/100 done : 28.591 s
+Index 25/100 done : 28.654 s
+Index 26/100 done : 28.356 s
+Index 27/100 done : 26.859 s
+Index 28/100 done : 27.889 s
+Index 29/100 done : 27.928 s
+Index 30/100 done : 23.739 s
+Index 31/100 done : 24.168 s
+Index 32/100 done : 23.850 s
+Index 33/100 done : 26.635 s
+Index 34/100 done : 28.396 s
+Index 35/100 done : 28.629 s
+Index 36/100 done : 28.764 s
+Index 37/100 done : 27.862 s
+Index 38/100 done : 28.067 s
+Index 39/100 done : 28.428 s
+Index 40/100 done : 24.696 s
+Index 41/100 done : 24.146 s
+Index 42/100 done : 24.407 s
+Index 43/100 done : 26.090 s
+Index 44/100 done : 29.455 s
+Index 45/100 done : 28.896 s
+Index 46/100 done : 28.612 s
+Index 47/100 done : 27.959 s
+Index 48/100 done : 27.880 s
+Index 49/100 done : 29.304 s
+Index 50/100 done : 25.769 s
+Index 51/100 done : 24.137 s
+Index 52/100 done : 24.472 s
+Index 53/100 done : 26.939 s
+Index 54/100 done : 28.342 s
+Index 55/100 done : 27.776 s
+Index 56/100 done : 28.880 s
+Index 57/100 done : 27.393 s
+Index 58/100 done : 24.765 s
+Index 59/100 done : 23.950 s
+Index 60/100 done : 28.741 s
+Index 61/100 done : 29.190 s
+Index 62/100 done : 29.264 s
+Index 63/100 done : 28.972 s
+Index 64/100 done : 29.862 s
+Index 65/100 done : 29.272 s
+Index 66/100 done : 29.089 s
+Index 67/100 done : 29.035 s
+Index 68/100 done : 28.603 s
+Index 69/100 done : 29.780 s
+Index 70/100 done : 27.121 s
+Index 71/100 done : 28.613 s
+Index 72/100 done : 25.355 s
+Index 73/100 done : 25.055 s
+Index 74/100 done : 24.213 s
+Index 75/100 done : 25.660 s
+Index 76/100 done : 24.645 s
+Index 77/100 done : 28.189 s
+Index 78/100 done : 29.937 s
+Index 79/100 done : 29.499 s
+Index 80/100 done : 29.822 s
+Index 81/100 done : 29.642 s
+Index 82/100 done : 29.779 s
+Index 83/100 done : 29.247 s
+Index 84/100 done : 28.919 s
+Index 85/100 done : 29.889 s
+Index 86/100 done : 28.838 s
+Index 87/100 done : 29.791 s
+Index 88/100 done : 29.699 s
+Index 89/100 done : 29.826 s
+Index 90/100 done : 29.226 s
+Index 91/100 done : 28.675 s
+Index 92/100 done : 26.690 s
+Index 93/100 done : 25.371 s
+Index 94/100 done : 24.490 s
+Index 95/100 done : 25.515 s
+Index 96/100 done : 24.061 s
+Index 97/100 done : 27.120 s
+Index 98/100 done : 28.534 s
+Index 99/100 done : 28.880 s
+[3666.648 s] Loading queries
+fbin_read: d = 200, n = 100000
+[3666.739 s] Loading ground truth for 100000 queries
+ibin_read: n = 100000, d = 100
+Capture range started in the application.
+[DBG] GPU begin (supported=1) mJ=19536076632
+[EnergyOnly] CPU pkg=65212.833 J, CPU dram=5474.014 J, GPU=18887.389 J, TOTAL=89574.236 J
+search_tk10_bs4096 start...
+search_tk10_bs4096 complete...
+=======================================
+topk: 10, batch size: 4096, nprobe: 64
+QPS: 25.539
+Ave accuracy : 72.2% 
+=======================================
+[DBG] GPU begin (supported=1) mJ=19572927861
+[EnergyOnly] CPU pkg=15950.823 J, CPU dram=1346.279 J, GPU=4607.485 J, TOTAL=21904.587 J
+search_tk10_bs1024 start...
+search_tk10_bs1024 complete...
+=======================================
+topk: 10, batch size: 1024, nprobe: 64
+QPS: 24.947
+Ave accuracy : 73.5% 
+=======================================
+[DBG] GPU begin (supported=1) mJ=19582144210
+[EnergyOnly] CPU pkg=123867.567 J, CPU dram=10478.147 J, GPU=35876.057 J, TOTAL=170221.771 J
+search_tk10_bs8192 start...
+search_tk10_bs8192 complete...
+=======================================
+topk: 10, batch size: 8192, nprobe: 64
+QPS: 25.773
+Ave accuracy : 71.5% 
+=======================================
+Capture range ended in the application.
+Generating '/tmp/nsys-report-cb4c.qdstrm'
+[1/1] [0%                          ] text.nsys-repProcessing events...
+[1/1] [0%                          ] text.nsys-rep[1/1] [9%                          ] text.nsys-rep[1/1] [8%                          ] text.nsys-rep[1/1] [9%                          ] text.nsys-rep[1/1] [8%                          ] text.nsys-rep[1/1] [9%                          ] text.nsys-rep[1/1] [8%                          ] text.nsys-rep[1/1] [9%                          ] text.nsys-rep[1/1] [8%                          ] text.nsys-rep[1/1] [9%                          ] text.nsys-rep[1/1] [8%                          ] text.nsys-rep[1/1] [9%                          ] text.nsys-rep[1/1] [8%                          ] text.nsys-rep[1/1] [9%                          ] text.nsys-rep[1/1] [8%                          ] text.nsys-rep[1/1] [11%                         ] text.nsys-rep[1/1] [12%                         ] text.nsys-rep[1/1] [11%                         ] text.nsys-rep[1/1] [12%                         ] text.nsys-rep[1/1] [11%                         ] text.nsys-rep[1/1] [10%                         ] text.nsys-rep[1/1] [9%                          ] text.nsys-rep[1/1] [8%                          ] text.nsys-rep[1/1] [7%                          ] text.nsys-rep[1/1] [6%                          ] text.nsys-rep[1/1] [5%                          ] text.nsys-rep[1/1] [5%                          ] text.nsys-rep[1/1] [6%                          ] text.nsys-rep[1/1] [7%                          ] text.nsys-rep[1/1] [6%                          ] text.nsys-rep[1/1] [7%                          ] text.nsys-rep[1/1] [8%                          ] text.nsys-rep[1/1] [9%                          ] text.nsys-rep[1/1] [10%                         ] text.nsys-rep[1/1] [9%                          ] text.nsys-rep[1/1] [10%                         ] text.nsys-rep[1/1] [11%                         ] text.nsys-rep[1/1] [12%                         ] text.nsys-rep[1/1] [13%                         ] text.nsys-rep[1/1] [14%                         ] text.nsys-rep[1/1] [=15%                        ] text.nsys-rep[1/1] [14%                         ] text.nsys-rep[1/1] [=15%                        ] text.nsys-rep[1/1] [=16%                        ] text.nsys-rep[1/1] [=15%                        ] text.nsys-rep[1/1] [=16%                        ] text.nsys-rep[1/1] [=17%                        ] text.nsys-rep[1/1] [=16%                        ] text.nsys-rep[1/1] [=17%                        ] text.nsys-rep[1/1] [==18%                       ] text.nsys-rep[1/1] [=17%                        ] text.nsys-rep[1/1] [==18%                       ] text.nsys-rep[1/1] [==19%                       ] text.nsys-rep[1/1] [==18%                       ] text.nsys-rep[1/1] [==19%                       ] text.nsys-rep[1/1] [==20%                       ] text.nsys-rep[1/1] [==19%                       ] text.nsys-rep[1/1] [==20%                       ] text.nsys-rep[1/1] [==19%                       ] text.nsys-rep[1/1] [==20%                       ] text.nsys-rep[1/1] [==21%                       ] text.nsys-rep[1/1] [==20%                       ] text.nsys-rep[1/1] [==21%                       ] text.nsys-rep[1/1] [==20%                       ] text.nsys-rep[1/1] [==19%                       ] text.nsys-rep[1/1] [==18%                       ] text.nsys-rep[1/1] [=17%                        ] text.nsys-rep[1/1] [=16%                        ] text.nsys-rep[1/1] [=15%                        ] text.nsys-rep[1/1] [14%                         ] text.nsys-rep[1/1] [13%                         ] text.nsys-rep[1/1] [12%                         ] text.nsys-rep[1/1] [11%                         ] text.nsys-rep[1/1] [10%                         ] text.nsys-rep[1/1] [9%                          ] text.nsys-rep[1/1] [8%                          ] text.nsys-rep[1/1] [7%                          ] text.nsys-rep[1/1] [6%                          ] text.nsys-rep[1/1] [5%                          ] text.nsys-rep[1/1] [5%                          ] text.nsys-rep[1/1] [6%                          ] text.nsys-rep[1/1] [7%                          ] text.nsys-rep[1/1] [8%                          ] text.nsys-rep[1/1] [9%                          ] text.nsys-rep[1/1] [10%                         ] text.nsys-rep[1/1] [11%                         ] text.nsys-rep[1/1] [12%                         ] text.nsys-rep[1/1] [13%                         ] text.nsys-rep[1/1] [14%                         ] text.nsys-rep[1/1] [=15%                        ] text.nsys-rep[1/1] [=16%                        ] text.nsys-rep[1/1] [=17%                        ] text.nsys-rep[1/1] [==18%                       ] text.nsys-rep[1/1] [==19%                       ] text.nsys-rep[1/1] [==20%                       ] text.nsys-rep[1/1] [==21%                       ] text.nsys-rep[1/1] [===22%                      ] text.nsys-rep[1/1] [===23%                      ] text.nsys-rep[1/1] [===24%                      ] text.nsys-rep[1/1] [====25%                     ] text.nsys-rep[1/1] [====26%                     ] text.nsys-rep[1/1] [====27%                     ] text.nsys-rep[1/1] [====28%                     ] text.nsys-rep[1/1] [=====29%                    ] text.nsys-rep[1/1] [=====30%                    ] text.nsys-rep[1/1] [=====31%                    ] text.nsys-rep[1/1] [=====32%                    ] text.nsys-rep[1/1] [======33%                   ] text.nsys-rep[1/1] [======34%                   ] text.nsys-rep[1/1] [======35%                   ] text.nsys-rep[1/1] [=======36%                  ] text.nsys-rep[1/1] [=======37%                  ] text.nsys-rep[1/1] [=======38%                  ] text.nsys-rep[1/1] [=======39%                  ] text.nsys-rep[1/1] [========40%                 ] text.nsys-rep[1/1] [========41%                 ] text.nsys-rep[1/1] [========42%                 ] text.nsys-rep[1/1] [=========43%                ] text.nsys-rep[1/1] [=========44%                ] text.nsys-rep[1/1] [=========45%                ] text.nsys-rep[1/1] [=========46%                ] text.nsys-rep[1/1] [==========47%               ] text.nsys-rep[1/1] [==========48%               ] text.nsys-rep[1/1] [==========49%               ] text.nsys-rep[1/1] [===========50%              ] text.nsys-rep[1/1] [===========51%              ] text.nsys-rep[1/1] [========================100%] text.nsys-rep[1/1] [========================100%] text.nsys-rep
+Generated:
+	/home/mhkim/UVM-ANNS-BF16/./eval/pcie_transfer_profile/text.nsys-rep

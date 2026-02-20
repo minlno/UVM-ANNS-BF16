@@ -1,0 +1,232 @@
+2 arguments
+[parallel] num_threads = 72
+num cores: 72
+[0.439 s] Loading train set
+bvecs_read: d : 128, n: 100000000
+[79.082 s] Training on 100000000 vectors
+[188.476 s] Loading database
+bvecs_reads: d : 128, n: 1000000000
+Read 10/100 done... , Thread 1 : 10.693 s
+Read 80/100 done... , Thread 8 : 10.756 s
+Read 50/100 done... , Thread 5 : 10.816 s
+Read 30/100 done... , Thread 3 : 10.875 s
+Read 70/100 done... , Thread 7 : 10.942 s
+Read 60/100 done... , Thread 6 : 11.001 s
+Read 90/100 done... , Thread 9 : 11.067 s
+Read 20/100 done... , Thread 2 : 11.132 s
+Read 0/100 done... , Thread 0 : 11.195 s
+Read 40/100 done... , Thread 4 : 11.259 s
+Read 51/100 done... , Thread 5 : 11.070 s
+Read 11/100 done... , Thread 1 : 11.257 s
+Read 61/100 done... , Thread 6 : 11.012 s
+Read 31/100 done... , Thread 3 : 11.200 s
+Read 81/100 done... , Thread 8 : 11.381 s
+Read 21/100 done... , Thread 2 : 11.063 s
+Read 1/100 done... , Thread 0 : 11.061 s
+Read 41/100 done... , Thread 4 : 11.052 s
+Read 71/100 done... , Thread 7 : 11.428 s
+Read 91/100 done... , Thread 9 : 11.368 s
+Read 82/100 done... , Thread 8 : 11.069 s
+Read 32/100 done... , Thread 3 : 11.197 s
+Read 12/100 done... , Thread 1 : 11.387 s
+Read 62/100 done... , Thread 6 : 11.386 s
+Read 52/100 done... , Thread 5 : 11.574 s
+Read 72/100 done... , Thread 7 : 11.152 s
+Read 42/100 done... , Thread 4 : 11.269 s
+Read 22/100 done... , Thread 2 : 11.445 s
+Read 2/100 done... , Thread 0 : 11.441 s
+Read 92/100 done... , Thread 9 : 11.319 s
+Read 83/100 done... , Thread 8 : 11.306 s
+Read 53/100 done... , Thread 5 : 11.119 s
+Read 33/100 done... , Thread 3 : 11.370 s
+Read 63/100 done... , Thread 6 : 11.308 s
+Read 13/100 done... , Thread 1 : 11.432 s
+Read 23/100 done... , Thread 2 : 11.188 s
+Read 43/100 done... , Thread 4 : 11.305 s
+Read 93/100 done... , Thread 9 : 11.187 s
+Read 3/100 done... , Thread 0 : 11.304 s
+Read 73/100 done... , Thread 7 : 11.541 s
+Read 24/100 done... , Thread 2 : 11.070 s
+Read 94/100 done... , Thread 9 : 11.020 s
+Read 4/100 done... , Thread 0 : 11.025 s
+Read 74/100 done... , Thread 7 : 11.021 s
+Read 64/100 done... , Thread 6 : 11.450 s
+Read 14/100 done... , Thread 1 : 11.454 s
+Read 84/100 done... , Thread 8 : 11.780 s
+Read 54/100 done... , Thread 5 : 11.781 s
+Read 34/100 done... , Thread 3 : 11.783 s
+Read 44/100 done... , Thread 4 : 11.610 s
+Read 95/100 done... , Thread 9 : 11.281 s
+Read 5/100 done... , Thread 0 : 11.283 s
+Read 75/100 done... , Thread 7 : 11.285 s
+Read 25/100 done... , Thread 2 : 11.529 s
+Read 85/100 done... , Thread 8 : 11.205 s
+Read 55/100 done... , Thread 5 : 11.204 s
+Read 15/100 done... , Thread 1 : 11.405 s
+Read 35/100 done... , Thread 3 : 11.269 s
+Read 65/100 done... , Thread 6 : 11.593 s
+Read 45/100 done... , Thread 4 : 11.317 s
+Read 26/100 done... , Thread 2 : 11.234 s
+Read 76/100 done... , Thread 7 : 11.355 s
+Read 96/100 done... , Thread 9 : 11.547 s
+Read 6/100 done... , Thread 0 : 11.549 s
+Read 66/100 done... , Thread 6 : 11.177 s
+Read 56/100 done... , Thread 5 : 11.544 s
+Read 36/100 done... , Thread 3 : 11.479 s
+Read 16/100 done... , Thread 1 : 11.607 s
+Read 86/100 done... , Thread 8 : 11.802 s
+Read 46/100 done... , Thread 4 : 11.552 s
+Read 77/100 done... , Thread 7 : 10.836 s
+Read 27/100 done... , Thread 2 : 11.046 s
+Read 97/100 done... , Thread 9 : 10.983 s
+Read 7/100 done... , Thread 0 : 10.985 s
+Read 67/100 done... , Thread 6 : 11.172 s
+Read 57/100 done... , Thread 5 : 11.292 s
+Read 87/100 done... , Thread 8 : 11.163 s
+Read 37/100 done... , Thread 3 : 11.349 s
+Read 17/100 done... , Thread 1 : 11.345 s
+Read 47/100 done... , Thread 4 : 11.282 s
+Read 78/100 done... , Thread 7 : 10.732 s
+Read 28/100 done... , Thread 2 : 10.651 s
+Read 98/100 done... , Thread 9 : 10.675 s
+Read 8/100 done... , Thread 0 : 10.755 s
+Read 68/100 done... , Thread 6 : 10.876 s
+Read 58/100 done... , Thread 5 : 11.045 s
+Read 38/100 done... , Thread 3 : 10.982 s
+Read 88/100 done... , Thread 8 : 11.105 s
+Read 18/100 done... , Thread 1 : 11.042 s
+Read 48/100 done... , Thread 4 : 11.036 s
+Read 29/100 done... , Thread 2 : 10.115 s
+Read 79/100 done... , Thread 7 : 10.484 s
+Read 99/100 done... , Thread 9 : 10.395 s
+Read 9/100 done... , Thread 0 : 10.390 s
+Read 49/100 done... , Thread 4 : 10.274 s
+Read 69/100 done... , Thread 6 : 11.051 s
+Read 19/100 done... , Thread 1 : 10.715 s
+Read 89/100 done... , Thread 8 : 10.830 s
+Read 59/100 done... , Thread 5 : 11.013 s
+Read 39/100 done... , Thread 3 : 11.011 s
+[301.004 s] Indexing database, size 1000000000*128
+Index 0/100 done : 33.063 s
+Index 1/100 done : 25.782 s
+Index 2/100 done : 22.724 s
+Index 3/100 done : 23.163 s
+Index 4/100 done : 22.278 s
+Index 5/100 done : 21.772 s
+Index 6/100 done : 22.244 s
+Index 7/100 done : 22.521 s
+Index 8/100 done : 23.104 s
+Index 9/100 done : 22.613 s
+Index 10/100 done : 25.680 s
+Index 11/100 done : 25.833 s
+Index 12/100 done : 26.177 s
+Index 13/100 done : 27.107 s
+Index 14/100 done : 25.198 s
+Index 15/100 done : 26.688 s
+Index 16/100 done : 24.283 s
+Index 17/100 done : 23.940 s
+Index 18/100 done : 23.761 s
+Index 19/100 done : 23.284 s
+Index 20/100 done : 23.238 s
+Index 21/100 done : 23.104 s
+Index 22/100 done : 23.267 s
+Index 23/100 done : 23.377 s
+Index 24/100 done : 23.633 s
+Index 25/100 done : 27.400 s
+Index 26/100 done : 31.264 s
+Index 27/100 done : 26.402 s
+Index 28/100 done : 25.811 s
+Index 29/100 done : 26.393 s
+Index 30/100 done : 29.003 s
+Index 31/100 done : 28.599 s
+Index 32/100 done : 28.764 s
+Index 33/100 done : 27.932 s
+Index 34/100 done : 25.909 s
+Index 35/100 done : 26.993 s
+Index 36/100 done : 24.853 s
+Index 37/100 done : 24.798 s
+Index 38/100 done : 24.892 s
+Index 39/100 done : 24.344 s
+Index 40/100 done : 24.818 s
+Index 41/100 done : 24.574 s
+Index 42/100 done : 24.811 s
+Index 43/100 done : 24.820 s
+Index 44/100 done : 25.222 s
+Index 45/100 done : 26.601 s
+Index 46/100 done : 24.695 s
+Index 47/100 done : 25.169 s
+Index 48/100 done : 25.938 s
+Index 49/100 done : 25.434 s
+Index 50/100 done : 28.366 s
+Index 51/100 done : 28.462 s
+Index 52/100 done : 28.665 s
+Index 53/100 done : 28.634 s
+Index 54/100 done : 27.429 s
+Index 55/100 done : 28.878 s
+Index 56/100 done : 26.877 s
+Index 57/100 done : 27.453 s
+Index 58/100 done : 28.067 s
+Index 59/100 done : 27.574 s
+Index 60/100 done : 30.768 s
+Index 61/100 done : 30.275 s
+Index 62/100 done : 30.313 s
+Index 63/100 done : 30.583 s
+Index 64/100 done : 27.732 s
+Index 65/100 done : 27.856 s
+Index 66/100 done : 26.989 s
+Index 67/100 done : 26.878 s
+Index 68/100 done : 26.932 s
+Index 69/100 done : 26.600 s
+Index 70/100 done : 26.260 s
+Index 71/100 done : 26.201 s
+Index 72/100 done : 25.695 s
+Index 73/100 done : 25.828 s
+Index 74/100 done : 25.408 s
+Index 75/100 done : 25.678 s
+Index 76/100 done : 25.217 s
+Index 77/100 done : 25.213 s
+Index 78/100 done : 25.085 s
+Index 79/100 done : 24.867 s
+Index 80/100 done : 27.281 s
+Index 81/100 done : 27.259 s
+Index 82/100 done : 27.239 s
+Index 83/100 done : 26.165 s
+Index 84/100 done : 25.048 s
+Index 85/100 done : 26.335 s
+Index 86/100 done : 24.804 s
+Index 87/100 done : 24.946 s
+Index 88/100 done : 25.556 s
+Index 89/100 done : 24.514 s
+Index 90/100 done : 25.159 s
+Index 91/100 done : 24.932 s
+Index 92/100 done : 24.941 s
+Index 93/100 done : 24.944 s
+Index 94/100 done : 24.964 s
+Index 95/100 done : 24.969 s
+Index 96/100 done : 25.380 s
+Index 97/100 done : 25.558 s
+Index 98/100 done : 25.966 s
+Index 99/100 done : 25.661 s
+[2896.681 s] Loading queries
+bvecs_read: d : 128, n: 10000
+[2896.703 s] Loading ground truth for 10000 queries
+=======================================
+topk: 10, batch size: 8, nprobe: 32
+QPS: 27.540
+Ave accuracy : 94.4% 
+=======================================
+=======================================
+topk: 10, batch size: 8, nprobe: 32
+QPS: 737.150
+Ave accuracy : 94.4% 
+=======================================
+=======================================
+topk: 32, batch size: 8, nprobe: 48
+QPS: 62.261
+Ave accuracy : 95.5% 
+=======================================
+=======================================
+topk: 32, batch size: 8, nprobe: 48
+QPS: 733.701
+Ave accuracy : 95.5% 
+=======================================

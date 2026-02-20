@@ -36,7 +36,190 @@
 #include <faiss/gpu/StandardGpuResources.h>
 #include <faiss/index_io.h>
 #include <cuda_bf16.h>
+
 #include <nvtx3/nvToolsExt.h>
+#include <cuda_profiler_api.h>
+#include <nvml.h>
+#include <filesystem>
+#include <optional>
+#include <cstdint>
+#include <dirent.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <cstring>
+#include <string>
+#include <fstream>
+
+namespace ep11 {
+
+static inline bool file_exists(const std::string& p) {
+  std::ifstream f(p.c_str()); return f.good();
+}
+static inline bool read_first_line(const std::string& p, std::string* out) {
+  std::ifstream f(p.c_str()); if (!f) return false;
+  std::getline(f, *out); return true;
+}
+static inline unsigned long long read_u64(const std::string& p) {
+  std::ifstream f(p.c_str());
+  unsigned long long v = 0; if (f) f >> v; return v;
+}
+
+// ---------- CPU RAPL (multi-socket, DRAM 포함 자동 탐색) ----------
+struct CpuEnergyJ { double pkg; double dram; CpuEnergyJ():pkg(0),dram(0){} double total() const {return pkg+dram;} };
+
+class RaplReader {
+public:
+  RaplReader() { discover(); }
+
+  void begin() { b_pkg_ = sum_paths(pkg_paths_); b_dram_ = sum_paths(dram_paths_); }
+  void end()   { a_pkg_ = sum_paths(pkg_paths_); a_dram_ = sum_paths(dram_paths_); }
+
+  CpuEnergyJ delta() const {
+    CpuEnergyJ e;
+    e.pkg  = uj_to_j(delta_wrap(a_pkg_,  b_pkg_));
+    e.dram = uj_to_j(delta_wrap(a_dram_, b_dram_));
+    return e;
+  }
+
+private:
+  std::vector<std::string> pkg_paths_;
+  std::vector<std::string> dram_paths_;
+  unsigned long long b_pkg_=0, b_dram_=0, a_pkg_=0, a_dram_=0;
+
+  void discover() {
+    const std::string root = "/sys/class/powercap";
+    DIR* d = opendir(root.c_str());
+    if (!d) return;
+    struct dirent* ent;
+    while ((ent = readdir(d)) != NULL) {
+      if (ent->d_type != DT_DIR && ent->d_type != DT_LNK) continue;
+      std::string name(ent->d_name);
+      if (name == "." || name == "..") continue;
+      if (name.find("intel-rapl:") != 0) continue;
+
+      std::string base = root + "/" + name;
+      std::string pkg_energy = base + "/energy_uj";
+      if (file_exists(pkg_energy)) pkg_paths_.push_back(pkg_energy);
+
+      // subdomains
+      DIR* sd = opendir(base.c_str());
+      if (!sd) continue;
+      struct dirent* sub;
+      while ((sub = readdir(sd)) != NULL) {
+        if (sub->d_type != DT_DIR && sub->d_type != DT_LNK) continue;
+        std::string sname(sub->d_name);
+        if (sname == "." || sname == "..") continue;
+        std::string sbase = base + "/" + sname;
+        std::string label_path = sbase + "/name";
+        std::string label;
+        if (!read_first_line(label_path, &label)) continue;
+        if (label.find("dram") != std::string::npos || label.find("DRAM") != std::string::npos) {
+          std::string dram_energy = sbase + "/energy_uj";
+          if (file_exists(dram_energy)) dram_paths_.push_back(dram_energy);
+        }
+      }
+      closedir(sd);
+    }
+    closedir(d);
+  }
+
+  static inline double uj_to_j(long double uj) { return static_cast<double>(uj / 1e6L); }
+  static inline unsigned long long sum_paths(const std::vector<std::string>& v) {
+    unsigned long long s = 0; for (size_t i=0;i<v.size();++i) s += read_u64(v[i]); return s;
+  }
+  // RAPL 보통 32-bit counter(µJ). 2^32 µJ ≈ 4294.967296 J
+  static inline long double delta_wrap(unsigned long long after, unsigned long long before) {
+    if (after >= before) return static_cast<long double>(after - before);
+    const long double WRAP = 4294967296.0L;
+    return static_cast<long double>(after) + WRAP - static_cast<long double>(before);
+  }
+};
+
+// ---------- GPU NVML energy ----------
+static bool nvml_global_initialized = false;
+
+class NvmlEnergy {
+public:
+  explicit NvmlEnergy(int gpu_index=0): ok_(false), idx_(gpu_index), dev_(0) {
+    if (!nvml_global_initialized) {
+      if (nvmlInit_v2() == NVML_SUCCESS) nvml_global_initialized = true;
+    }
+    if (nvml_global_initialized) {
+      ok_ = (nvmlDeviceGetHandleByIndex_v2(idx_, &dev_) == NVML_SUCCESS);
+    }
+  }
+
+  ~NvmlEnergy() {
+    // 전역으로 관리하므로 여기서는 nvmlShutdown() 호출 X
+  }
+
+  std::pair<bool, unsigned long long> read_mJ() const {
+    if (!ok_) return std::make_pair(false, 0ULL);
+    unsigned long long mJ = 0;
+    if (nvmlDeviceGetTotalEnergyConsumption(dev_, &mJ) != NVML_SUCCESS)
+      return std::make_pair(false, 0ULL);
+    return std::make_pair(true, mJ);
+  }
+
+private:
+  bool ok_;
+  int idx_;
+  nvmlDevice_t dev_;
+};
+// ---------- Energy-only RAII scope ----------
+struct SectionEnergy { CpuEnergyJ cpu; double gpu_J; SectionEnergy():gpu_J(0){} double total_J() const {return cpu.total()+gpu_J;} };
+
+class EnergyScope {
+public:
+  explicit EnergyScope(int gpu_index=0)
+    : nvml_(gpu_index), have_gpu_begin_(false), gpu_mJ_begin_(0), cpu_(), gpu_J_(0.0) {
+    rapl_.begin();
+    std::pair<bool, unsigned long long> r = nvml_.read_mJ();
+    have_gpu_begin_ = r.first;
+    gpu_mJ_begin_   = r.second;
+	fprintf(stderr, "[DBG] GPU begin (supported=%d) mJ=%llu\n", (int)have_gpu_begin_, gpu_mJ_begin_);
+  }
+  ~EnergyScope(){ if (!finalized_) finalize(); }
+
+  void finalize() {
+    if (finalized_) return;
+    cudaDeviceSynchronize();
+    rapl_.end();
+    cpu_ = rapl_.delta();
+
+    std::pair<bool, unsigned long long> r = nvml_.read_mJ();
+    if (r.first && have_gpu_begin_) {
+      unsigned long long diff_mJ = (r.second >= gpu_mJ_begin_) ? (r.second - gpu_mJ_begin_) : 0ULL;
+      gpu_J_ = static_cast<double>(diff_mJ) / 1000.0;
+    } else {
+      gpu_J_ = 0.0;
+    }
+    finalized_ = true;
+  }
+
+
+  SectionEnergy result() const { SectionEnergy s; s.cpu = cpu_; s.gpu_J = gpu_J_; return s; }
+
+private:
+  bool finalized_ = false;
+  RaplReader rapl_;
+  NvmlEnergy nvml_;
+  bool have_gpu_begin_;
+  unsigned long long gpu_mJ_begin_;
+  CpuEnergyJ cpu_;
+  double gpu_J_;
+};
+
+// ---------- CUDA profiler-only RAII scope ----------
+class CudaProfilerScope {
+public:
+  explicit CudaProfilerScope(bool sync_on_exit=true): sync_(sync_on_exit) { cudaProfilerStart(); }
+  ~CudaProfilerScope(){ if (sync_) cudaDeviceSynchronize(); cudaProfilerStop(); }
+private:
+  bool sync_;
+};
+
+} // namespace ep11
 
 using bf16 = __nv_bfloat16;
 double elapsed() {
@@ -761,10 +944,12 @@ int main(int argc,char **argv){
     }
 
 	nq = 8192;
-	std::vector<int> topks = {10, 32};
+	//std::vector<int> topks = {10, 32};
 	//std::vector<int> nprobes = {2, 4, 6, 8, 10, 12, 14, 16};
 	//std::vector<int> nprobes = {8, 16, 24, 32, 40, 48, 56, 64};
-	std::vector<int> batch_sizes = {8192, 1024, 2048, 4096, 8192};
+	//std::vector<int> batch_sizes = {8192, 1024, 2048, 4096, 8192};
+	std::vector<int> topks = {10};
+	std::vector<int> batch_sizes = {4096, 1024, 8192};
 
     bf16* xq_bf16 = new bf16[dim * nq];
     for (size_t i = 0; i < nq; i++) {
@@ -772,6 +957,7 @@ int main(int argc,char **argv){
             xq_bf16[dim * i + j] = __float2bfloat16_rn(xq[dim * i + j]);
     }
 
+    cudaProfilerStart();
 	for (int input_k : topks) {
         int in_probe;
         if (p1 == "text"){
@@ -786,18 +972,31 @@ int main(int argc,char **argv){
                 in_probe = 48;
         }
 
-
 		for (int bs : batch_sizes) {
+			nq = bs;
     		std::vector<float> dis(nq * input_k);
     		std::vector<faiss::Index::idx_t> idx(nq * input_k);
     		index->nprobe = in_probe;
     		double tt0, tt1, total = 0.;
+    		int i;
+
+			ep11::SectionEnergy r;
+			{
+				ep11::EnergyScope es(0);
+    			// ---- 측정 구간 ----
+				for (i = 0; i < nq / bs; i++){
+        			index->search(bs, xq + d * (bs * i), input_k, dis.data() + input_k * (bs * i), idx.data() + input_k * (bs * i));
+    			}
+				es.finalize();
+				r = es.result();
+			}
+    		std::printf("[EnergyOnly] CPU pkg=%.3f J, CPU dram=%.3f J, GPU=%.3f J, TOTAL=%.3f J\n",
+                	r.cpu.pkg, r.cpu.dram, r.gpu_J, r.total_J());
 
             char nvtx_label[128];
             snprintf(nvtx_label, sizeof(nvtx_label), "search_tk%d_bs%d", input_k, bs);
             printf("%s start...\n", nvtx_label);
             nvtxRangePushA(nvtx_label);
-    		int i;
     		for (i = 0; i < nq / bs; i++){
         		tt0 = elapsed();
         		index->search(bs, xq + d * (bs * i), input_k, dis.data() + input_k * (bs * i), idx.data() + input_k * (bs * i));
@@ -805,8 +1004,8 @@ int main(int argc,char **argv){
         		tt1 = elapsed();
             	total += (tt1 - tt0) * 1000;
     		}
-            nvtxRangePop();
             cudaDeviceSynchronize();
+            nvtxRangePop();
             printf("%s complete...\n", nvtx_label);
 
     		double acc = 0.;
@@ -823,6 +1022,7 @@ int main(int argc,char **argv){
 			    printf("=======================================\n");
 		}
 	}
+    cudaProfilerStop();
 
     delete[] xq;
 	delete[] xq_bf16;

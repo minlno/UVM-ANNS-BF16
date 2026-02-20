@@ -1,0 +1,347 @@
+2 arguments
+[parallel] num_threads = 72
+num cores: 72
+[0.609 s] Loading train set
+fbin_read: d = 96, n = 350000000
+[115.898 s] Training on 350000000 vectors
+[340.274 s] Loading database
+d : 96, n: 1000000000
+Read 50/100 slice done... , Thread 5 : 10.183 s
+Read 0/100 done
+Read 60/100 slice done... , Thread 6 : 10.193 s
+Read 1/100 done
+Read 80/100 slice done... , Thread 8 : 10.193 s
+Read 2/100 done
+Read 70/100 slice done... , Thread 7 : 10.194 s
+Read 3/100 done
+Read 40/100 slice done... , Thread 4 : 10.270 s
+Read 4/100 done
+Read 10/100 slice done... , Thread 1 : 10.275 s
+Read 5/100 done
+Read 20/100 slice done... , Thread 2 : 10.292 s
+Read 6/100 done
+Read 90/100 slice done... , Thread 9 : 10.299 s
+Read 7/100 done
+Read 0/100 slice done... , Thread 0 : 10.315 s
+Read 8/100 done
+Read 30/100 slice done... , Thread 3 : 10.335 s
+Read 9/100 done
+Read 81/100 slice done... , Thread 8 : 10.186 s
+Read 10/100 done
+Read 61/100 slice done... , Thread 6 : 10.198 s
+Read 11/100 done
+Read 51/100 slice done... , Thread 5 : 10.210 s
+Read 12/100 done
+Read 71/100 slice done... , Thread 7 : 10.217 s
+Read 13/100 done
+Read 41/100 slice done... , Thread 4 : 10.279 s
+Read 14/100 done
+Read 11/100 slice done... , Thread 1 : 10.293 s
+Read 15/100 done
+Read 21/100 slice done... , Thread 2 : 10.295 s
+Read 16/100 done
+Read 1/100 slice done... , Thread 0 : 10.275 s
+Read 17/100 done
+Read 91/100 slice done... , Thread 9 : 10.295 s
+Read 18/100 done
+Read 31/100 slice done... , Thread 3 : 10.291 s
+Read 19/100 done
+Read 62/100 slice done... , Thread 6 : 10.191 s
+Read 20/100 done
+Read 82/100 slice done... , Thread 8 : 10.204 s
+Read 21/100 done
+Read 72/100 slice done... , Thread 7 : 10.180 s
+Read 22/100 done
+Read 52/100 slice done... , Thread 5 : 10.213 s
+Read 23/100 done
+Read 42/100 slice done... , Thread 4 : 10.301 s
+Read 24/100 done
+Read 12/100 slice done... , Thread 1 : 10.304 s
+Read 25/100 done
+Read 92/100 slice done... , Thread 9 : 10.302 s
+Read 26/100 done
+Read 22/100 slice done... , Thread 2 : 10.318 s
+Read 27/100 done
+Read 2/100 slice done... , Thread 0 : 10.317 s
+Read 28/100 done
+Read 32/100 slice done... , Thread 3 : 10.298 s
+Read 29/100 done
+Read 63/100 slice done... , Thread 6 : 10.182 s
+Read 30/100 done
+Read 83/100 slice done... , Thread 8 : 10.181 s
+Read 31/100 done
+Read 73/100 slice done... , Thread 7 : 10.199 s
+Read 32/100 done
+Read 53/100 slice done... , Thread 5 : 10.212 s
+Read 33/100 done
+Read 43/100 slice done... , Thread 4 : 10.320 s
+Read 34/100 done
+Read 93/100 slice done... , Thread 9 : 10.282 s
+Read 35/100 done
+Read 13/100 slice done... , Thread 1 : 10.313 s
+Read 36/100 done
+Read 33/100 slice done... , Thread 3 : 10.273 s
+Read 37/100 done
+Read 3/100 slice done... , Thread 0 : 10.291 s
+Read 38/100 done
+Read 23/100 slice done... , Thread 2 : 10.310 s
+Read 39/100 done
+Read 84/100 slice done... , Thread 8 : 10.213 s
+Read 40/100 done
+Read 74/100 slice done... , Thread 7 : 10.212 s
+Read 41/100 done
+Read 64/100 slice done... , Thread 6 : 10.240 s
+Read 42/100 done
+Read 54/100 slice done... , Thread 5 : 10.197 s
+Read 43/100 done
+Read 14/100 slice done... , Thread 1 : 10.221 s
+Read 44/100 done
+Read 44/100 slice done... , Thread 4 : 10.283 s
+Read 45/100 done
+Read 34/100 slice done... , Thread 3 : 10.272 s
+Read 46/100 done
+Read 94/100 slice done... , Thread 9 : 10.290 s
+Read 47/100 done
+Read 4/100 slice done... , Thread 0 : 10.279 s
+Read 48/100 done
+Read 24/100 slice done... , Thread 2 : 10.299 s
+Read 49/100 done
+Read 85/100 slice done... , Thread 8 : 10.209 s
+Read 50/100 done
+Read 65/100 slice done... , Thread 6 : 10.200 s
+Read 51/100 done
+Read 75/100 slice done... , Thread 7 : 10.214 s
+Read 52/100 done
+Read 55/100 slice done... , Thread 5 : 10.223 s
+Read 53/100 done
+Read 15/100 slice done... , Thread 1 : 10.211 s
+Read 54/100 done
+Read 45/100 slice done... , Thread 4 : 10.281 s
+Read 55/100 done
+Read 95/100 slice done... , Thread 9 : 10.281 s
+Read 56/100 done
+Read 35/100 slice done... , Thread 3 : 10.284 s
+Read 57/100 done
+Read 5/100 slice done... , Thread 0 : 10.286 s
+Read 58/100 done
+Read 25/100 slice done... , Thread 2 : 10.333 s
+Read 59/100 done
+Read 86/100 slice done... , Thread 8 : 10.219 s
+Read 60/100 done
+Read 66/100 slice done... , Thread 6 : 10.205 s
+Read 61/100 done
+Read 76/100 slice done... , Thread 7 : 10.214 s
+Read 62/100 done
+Read 56/100 slice done... , Thread 5 : 10.224 s
+Read 63/100 done
+Read 16/100 slice done... , Thread 1 : 10.221 s
+Read 64/100 done
+Read 6/100 slice done... , Thread 0 : 10.267 s
+Read 65/100 done
+Read 46/100 slice done... , Thread 4 : 10.297 s
+Read 66/100 done
+Read 36/100 slice done... , Thread 3 : 10.284 s
+Read 67/100 done
+Read 96/100 slice done... , Thread 9 : 10.290 s
+Read 68/100 done
+Read 26/100 slice done... , Thread 2 : 10.292 s
+Read 69/100 done
+Read 67/100 slice done... , Thread 6 : 10.180 s
+Read 70/100 done
+Read 87/100 slice done... , Thread 8 : 10.184 s
+Read 71/100 done
+Read 77/100 slice done... , Thread 7 : 10.181 s
+Read 72/100 done
+Read 57/100 slice done... , Thread 5 : 10.183 s
+Read 73/100 done
+Read 17/100 slice done... , Thread 1 : 10.197 s
+Read 74/100 done
+Read 7/100 slice done... , Thread 0 : 10.325 s
+Read 75/100 done
+Read 97/100 slice done... , Thread 9 : 10.318 s
+Read 76/100 done
+Read 37/100 slice done... , Thread 3 : 10.325 s
+Read 77/100 done
+Read 47/100 slice done... , Thread 4 : 10.336 s
+Read 78/100 done
+Read 27/100 slice done... , Thread 2 : 10.307 s
+Read 79/100 done
+Read 88/100 slice done... , Thread 8 : 10.127 s
+Read 80/100 done
+Read 68/100 slice done... , Thread 6 : 10.137 s
+Read 81/100 done
+Read 78/100 slice done... , Thread 7 : 10.141 s
+Read 82/100 done
+Read 58/100 slice done... , Thread 5 : 10.150 s
+Read 83/100 done
+Read 18/100 slice done... , Thread 1 : 10.152 s
+Read 84/100 done
+Read 8/100 slice done... , Thread 0 : 10.359 s
+Read 85/100 done
+Read 38/100 slice done... , Thread 3 : 10.354 s
+Read 86/100 done
+Read 98/100 slice done... , Thread 9 : 10.364 s
+Read 87/100 done
+Read 48/100 slice done... , Thread 4 : 10.366 s
+Read 88/100 done
+Read 28/100 slice done... , Thread 2 : 10.365 s
+Read 89/100 done
+Read 89/100 slice done... , Thread 8 : 10.142 s
+Read 90/100 done
+Read 69/100 slice done... , Thread 6 : 10.134 s
+Read 91/100 done
+Read 79/100 slice done... , Thread 7 : 10.147 s
+Read 92/100 done
+Read 59/100 slice done... , Thread 5 : 10.114 s
+Read 93/100 done
+Read 19/100 slice done... , Thread 1 : 9.977 s
+Read 94/100 done
+Read 39/100 slice done... , Thread 3 : 9.945 s
+Read 95/100 done
+Read 99/100 slice done... , Thread 9 : 9.939 s
+Read 96/100 done
+Read 9/100 slice done... , Thread 0 : 9.953 s
+Read 97/100 done
+Read 49/100 slice done... , Thread 4 : 9.943 s
+Read 98/100 done
+Read 29/100 slice done... , Thread 2 : 9.883 s
+Read 99/100 done
+[442.978 s] Indexing database, size 1000000000*96
+Index 0/100 done : 32.480 s
+Index 1/100 done : 23.743 s
+Index 2/100 done : 22.995 s
+Index 3/100 done : 21.499 s
+Index 4/100 done : 21.254 s
+Index 5/100 done : 21.151 s
+Index 6/100 done : 21.008 s
+Index 7/100 done : 21.148 s
+Index 8/100 done : 24.321 s
+Index 9/100 done : 24.008 s
+Index 10/100 done : 22.424 s
+Index 11/100 done : 22.106 s
+Index 12/100 done : 22.007 s
+Index 13/100 done : 22.485 s
+Index 14/100 done : 24.431 s
+Index 15/100 done : 24.523 s
+Index 16/100 done : 24.516 s
+Index 17/100 done : 24.783 s
+Index 18/100 done : 24.602 s
+Index 19/100 done : 24.626 s
+Index 20/100 done : 22.663 s
+Index 21/100 done : 22.601 s
+Index 22/100 done : 22.730 s
+Index 23/100 done : 22.616 s
+Index 24/100 done : 22.592 s
+Index 25/100 done : 22.521 s
+Index 26/100 done : 22.653 s
+Index 27/100 done : 23.400 s
+Index 28/100 done : 24.660 s
+Index 29/100 done : 24.479 s
+Index 30/100 done : 22.505 s
+Index 31/100 done : 22.652 s
+Index 32/100 done : 22.579 s
+Index 33/100 done : 26.464 s
+Index 34/100 done : 24.872 s
+Index 35/100 done : 24.514 s
+Index 36/100 done : 23.712 s
+Index 37/100 done : 24.781 s
+Index 38/100 done : 26.076 s
+Index 39/100 done : 25.689 s
+Index 40/100 done : 23.605 s
+Index 41/100 done : 24.029 s
+Index 42/100 done : 23.822 s
+Index 43/100 done : 23.752 s
+Index 44/100 done : 23.738 s
+Index 45/100 done : 24.009 s
+Index 46/100 done : 24.154 s
+Index 47/100 done : 25.249 s
+Index 48/100 done : 26.279 s
+Index 49/100 done : 26.002 s
+Index 50/100 done : 26.151 s
+Index 51/100 done : 26.499 s
+Index 52/100 done : 26.423 s
+Index 53/100 done : 26.499 s
+Index 54/100 done : 26.382 s
+Index 55/100 done : 26.162 s
+Index 56/100 done : 25.929 s
+Index 57/100 done : 26.582 s
+Index 58/100 done : 26.454 s
+Index 59/100 done : 26.313 s
+Index 60/100 done : 26.350 s
+Index 61/100 done : 26.616 s
+Index 62/100 done : 26.806 s
+Index 63/100 done : 26.360 s
+Index 64/100 done : 26.326 s
+Index 65/100 done : 26.473 s
+Index 66/100 done : 26.185 s
+Index 67/100 done : 26.047 s
+Index 68/100 done : 26.236 s
+Index 69/100 done : 26.153 s
+Index 70/100 done : 26.272 s
+Index 71/100 done : 26.243 s
+Index 72/100 done : 26.586 s
+Index 73/100 done : 26.394 s
+Index 74/100 done : 26.391 s
+Index 75/100 done : 26.561 s
+Index 76/100 done : 26.316 s
+Index 77/100 done : 26.584 s
+Index 78/100 done : 26.468 s
+Index 79/100 done : 26.239 s
+Index 80/100 done : 26.174 s
+Index 81/100 done : 26.304 s
+Index 82/100 done : 26.497 s
+Index 83/100 done : 26.721 s
+Index 84/100 done : 26.253 s
+Index 85/100 done : 26.646 s
+Index 86/100 done : 26.401 s
+Index 87/100 done : 26.142 s
+Index 88/100 done : 26.305 s
+Index 89/100 done : 25.949 s
+Index 90/100 done : 24.225 s
+Index 91/100 done : 24.072 s
+Index 92/100 done : 24.263 s
+Index 93/100 done : 24.243 s
+Index 94/100 done : 23.960 s
+Index 95/100 done : 23.878 s
+Index 96/100 done : 23.602 s
+Index 97/100 done : 24.628 s
+Index 98/100 done : 25.672 s
+Index 99/100 done : 25.676 s
+[2931.095 s] Loading queries
+fbin_read: d = 96, n = 10000
+[2931.108 s] Loading ground truth for 10000 queries
+ibin_read: n = 10000, d = 100
+Capture range started in the application.
+[DBG] GPU begin (supported=1) mJ=19109382754
+[EnergyOnly] CPU pkg=19109.447 J, CPU dram=1520.683 J, GPU=5653.407 J, TOTAL=26283.537 J
+search_tk10_bs4096 start...
+search_tk10_bs4096 complete...
+=======================================
+topk: 10, batch size: 4096, nprobe: 32
+QPS: 90.349
+Ave accuracy : 94.2% 
+=======================================
+[DBG] GPU begin (supported=1) mJ=19120179078
+[EnergyOnly] CPU pkg=4496.210 J, CPU dram=357.574 J, GPU=1325.325 J, TOTAL=6179.109 J
+search_tk10_bs1024 start...
+search_tk10_bs1024 complete...
+=======================================
+topk: 10, batch size: 1024, nprobe: 32
+QPS: 81.806
+Ave accuracy : 94.5% 
+=======================================
+[DBG] GPU begin (supported=1) mJ=19122923858
+[EnergyOnly] CPU pkg=34566.968 J, CPU dram=2757.398 J, GPU=10178.921 J, TOTAL=47503.287 J
+search_tk10_bs8192 start...
+search_tk10_bs8192 complete...
+=======================================
+topk: 10, batch size: 8192, nprobe: 32
+QPS: 91.249
+Ave accuracy : 94.3% 
+=======================================
+Capture range ended in the application.
+Generating '/tmp/nsys-report-9a84.qdstrm'
+[1/1] [0%                          ] deep.nsys-repProcessing events...
+[1/1] [0%                          ] deep.nsys-rep[1/1] [11%                         ] deep.nsys-rep[1/1] [12%                         ] deep.nsys-rep[1/1] [10%                         ] deep.nsys-rep[1/1] [11%                         ] deep.nsys-rep[1/1] [9%                          ] deep.nsys-rep[1/1] [8%                          ] deep.nsys-rep[1/1] [7%                          ] deep.nsys-rep[1/1] [6%                          ] deep.nsys-rep[1/1] [10%                         ] deep.nsys-rep[1/1] [9%                          ] deep.nsys-rep[1/1] [10%                         ] deep.nsys-rep[1/1] [9%                          ] deep.nsys-rep[1/1] [13%                         ] deep.nsys-rep[1/1] [12%                         ] deep.nsys-rep[1/1] [=15%                        ] deep.nsys-rep[1/1] [14%                         ] deep.nsys-rep[1/1] [=17%                        ] deep.nsys-rep[1/1] [=16%                        ] deep.nsys-rep[1/1] [==18%                       ] deep.nsys-rep[1/1] [=17%                        ] deep.nsys-rep[1/1] [==19%                       ] deep.nsys-rep[1/1] [==18%                       ] deep.nsys-rep[1/1] [==20%                       ] deep.nsys-rep[1/1] [==19%                       ] deep.nsys-rep[1/1] [==21%                       ] deep.nsys-rep[1/1] [==20%                       ] deep.nsys-rep[1/1] [===22%                      ] deep.nsys-rep[1/1] [==21%                       ] deep.nsys-rep[1/1] [==20%                       ] deep.nsys-rep[1/1] [===22%                      ] deep.nsys-rep[1/1] [==21%                       ] deep.nsys-rep[1/1] [===23%                      ] deep.nsys-rep[1/1] [===22%                      ] deep.nsys-rep[1/1] [===23%                      ] deep.nsys-rep[1/1] [===22%                      ] deep.nsys-rep[1/1] [==21%                       ] deep.nsys-rep[1/1] [==20%                       ] deep.nsys-rep[1/1] [==19%                       ] deep.nsys-rep[1/1] [==18%                       ] deep.nsys-rep[1/1] [=17%                        ] deep.nsys-rep[1/1] [=16%                        ] deep.nsys-rep[1/1] [=15%                        ] deep.nsys-rep[1/1] [14%                         ] deep.nsys-rep[1/1] [13%                         ] deep.nsys-rep[1/1] [12%                         ] deep.nsys-rep[1/1] [11%                         ] deep.nsys-rep[1/1] [10%                         ] deep.nsys-rep[1/1] [9%                          ] deep.nsys-rep[1/1] [8%                          ] deep.nsys-rep[1/1] [7%                          ] deep.nsys-rep[1/1] [6%                          ] deep.nsys-rep[1/1] [5%                          ] deep.nsys-rep[1/1] [5%                          ] deep.nsys-rep[1/1] [6%                          ] deep.nsys-rep[1/1] [7%                          ] deep.nsys-rep[1/1] [8%                          ] deep.nsys-rep[1/1] [9%                          ] deep.nsys-rep[1/1] [10%                         ] deep.nsys-rep[1/1] [11%                         ] deep.nsys-rep[1/1] [12%                         ] deep.nsys-rep[1/1] [13%                         ] deep.nsys-rep[1/1] [14%                         ] deep.nsys-rep[1/1] [=15%                        ] deep.nsys-rep[1/1] [=16%                        ] deep.nsys-rep[1/1] [=17%                        ] deep.nsys-rep[1/1] [==18%                       ] deep.nsys-rep[1/1] [==19%                       ] deep.nsys-rep[1/1] [==20%                       ] deep.nsys-rep[1/1] [==21%                       ] deep.nsys-rep[1/1] [===22%                      ] deep.nsys-rep[1/1] [===23%                      ] deep.nsys-rep[1/1] [===24%                      ] deep.nsys-rep[1/1] [====25%                     ] deep.nsys-rep[1/1] [====26%                     ] deep.nsys-rep[1/1] [====27%                     ] deep.nsys-rep[1/1] [====28%                     ] deep.nsys-rep[1/1] [=====29%                    ] deep.nsys-rep[1/1] [=====30%                    ] deep.nsys-rep[1/1] [=====31%                    ] deep.nsys-rep[1/1] [=====32%                    ] deep.nsys-rep[1/1] [======33%                   ] deep.nsys-rep[1/1] [======34%                   ] deep.nsys-rep[1/1] [======35%                   ] deep.nsys-rep[1/1] [=======36%                  ] deep.nsys-rep[1/1] [=======37%                  ] deep.nsys-rep[1/1] [=======38%                  ] deep.nsys-rep[1/1] [=======39%                  ] deep.nsys-rep[1/1] [========40%                 ] deep.nsys-rep[1/1] [========41%                 ] deep.nsys-rep[1/1] [========42%                 ] deep.nsys-rep[1/1] [=========43%                ] deep.nsys-rep[1/1] [=========44%                ] deep.nsys-rep[1/1] [=========45%                ] deep.nsys-rep[1/1] [=========46%                ] deep.nsys-rep[1/1] [==========47%               ] deep.nsys-rep[1/1] [==========48%               ] deep.nsys-rep[1/1] [==========49%               ] deep.nsys-rep[1/1] [===========50%              ] deep.nsys-rep[1/1] [===========51%              ] deep.nsys-rep[1/1] [========================100%] deep.nsys-rep[1/1] [========================100%] deep.nsys-rep
+Generated:
+	/home/mhkim/UVM-ANNS-BF16/./eval/pcie_transfer_profile/deep.nsys-rep
